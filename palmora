@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Palmora | Ultra-Luxury Mediterranean Island</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+
+<style>
+/* --- CSS --- */
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Inter',sans-serif;background:#0d0f12;color:#e8e8e8;overflow-x:hidden;scroll-behavior:smooth;}
+a{text-decoration:none;color:inherit;cursor:pointer;}
+nav{position:fixed;top:0;width:100%;padding:25px 8%;display:flex;justify-content:space-between;align-items:center;z-index:1000;background:linear-gradient(to bottom, rgba(0,0,0,0.85), transparent);}
+.logo{font-family:'Cormorant Garamond',serif;font-size:32px;letter-spacing:4px;}
+nav ul{display:flex;gap:40px;list-style:none;font-size:14px;letter-spacing:1px;}
+nav ul li:hover{text-decoration:underline;cursor:pointer;}
+.hero{height:100vh;background:url("https://images.unsplash.com/photo-1507525428034-b723cf961d3e") center/cover no-repeat;display:flex;align-items:center;justify-content:center;text-align:center;position:relative;opacity:0;transform:translateY(20px);animation:fadeInUp 1s forwards;}
+.hero::after{content:"";position:absolute;width:100%;height:100%;background:rgba(0,0,0,0.55);}
+.hero-content{position:relative;z-index:1;max-width:800px;}
+.hero h1{font-family:'Cormorant Garamond',serif;font-size:82px;font-weight:500;letter-spacing:6px;margin-bottom:20px;}
+.hero p{font-size:20px;opacity:0.85;margin-bottom:40px;}
+.hero button{background:transparent;border:1px solid #e8e8e8;padding:14px 40px;color:white;letter-spacing:2px;cursor:pointer;transition:0.3s;}
+.hero button:hover{background:white;color:black;}
+section{padding:100px 10%;max-width:1400px;margin:auto;opacity:0;transform:translateY(30px);transition:1s;}
+.section-title{font-family:'Cormorant Garamond',serif;font-size:52px;margin-bottom:40px;letter-spacing:3px;}
+.suites{display:grid;grid-template-columns:repeat(auto-fit,minmax(350px,1fr));gap:60px;}
+.suite{position:relative;overflow:hidden;cursor:pointer;transition:0.3s;}
+.suite img{width:100%;height:500px;object-fit:cover;filter:brightness(85%);transition:0.6s;}
+.suite:hover img{transform:scale(1.05);filter:brightness(65%);}
+.suite-info{position:absolute;bottom:40px;left:40px;}
+.suite-info h3{font-family:'Cormorant Garamond',serif;font-size:34px;margin-bottom:10px;}
+.suite-info p{font-size:14px;letter-spacing:1px;}
+.price{margin-top:10px;font-weight:300;letter-spacing:2px;}
+.awards{display:flex;flex-wrap:wrap;gap:30px;justify-content:center;text-align:center;margin-top:40px;}
+.award{background:#111;padding:30px 20px;border-radius:12px;flex:1 1 220px;transition:0.3s;}
+.award:hover{transform:translateY(-5px);box-shadow:0 10px 25px rgba(255,255,255,0.1);}
+.award h3{font-family:'Cormorant Garamond',serif;font-size:20px;margin-bottom:10px;}
+.award p{opacity:0.7;font-size:14px;}
+.experience{text-align:center;max-width:900px;margin:auto;font-size:18px;line-height:1.8;opacity:0.85;}
+.modal-overlay{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.95);display:none;justify-content:center;align-items:center;z-index:2000;overflow:auto;padding:20px;}
+.modal{background:#0d0f12;padding:50px;border-radius:12px;max-width:900px;text-align:left;position:relative;color:#fff;animation:fadeIn 0.5s;}
+.modal h2{font-family:'Cormorant Garamond',serif;font-size:36px;margin-bottom:20px;}
+.modal p{margin-bottom:20px;opacity:0.9;}
+.modal input, .modal select{padding:10px;margin-bottom:15px;border-radius:5px;border:1px solid #ccc;width:100%;}
+.modal button{background:#e8e8e8;color:#0d0f12;padding:12px 25px;border:none;border-radius:6px;cursor:pointer;transition:0.3s;font-weight:600;}
+.modal button:hover{background:#fff;}
+.close-btn{position:absolute;top:20px;right:20px;background:none;border:none;color:#fff;font-size:28px;cursor:pointer;}
+.reviews{margin-top:100px;text-align:center;}
+.review{font-style:italic;font-size:20px;margin-bottom:20px;opacity:0.8;}
+.guest{letter-spacing:2px;font-size:14px;}
+footer{background:#0b0c0f;padding:80px 10%;text-align:center;border-top:1px solid rgba(255,255,255,0.1);}
+footer p{opacity:0.5;margin:8px 0;}
+@keyframes fadeInUp{to{opacity:1;transform:translateY(0);}}
+@keyframes fadeIn{from{opacity:0;}to{opacity:1;}}
+</style>
+</head>
+<body>
+
+<nav>
+<div class="logo">PALMORA</div>
+<ul>
+<li onclick="openModal('dining')">Dining</li>
+<li onclick="openModal('wellness')">Wellness</li>
+<li onclick="openModal('experiences')">Experiences</li>
+<li onclick="openModal('reserve')">Reserve</li>
+</ul>
+</nav>
+
+<div class="hero">
+<div class="hero-content">
+<h1>PALMORA</h1>
+<p>A Private Mediterranean Island Between Spain & Morocco</p>
+<button onclick="scrollToSection('suites')">Explore Residences</button>
+</div>
+</div>
+
+<section id="suites">
+<div class="section-title">Signature Residences</div>
+<div class="suites">
+<div class="suite" onclick="openResidence('oceanVilla')">
+<img src="https://images.unsplash.com/photo-1519046904884-53103b34b206">
+<div class="suite-info">
+<h3>Ocean Sanctuary Villa</h3>
+<p>Private infinity pool · Dedicated host · Direct sea access</p>
+<div class="price">From €2,300 per night</div>
+</div>
+</div>
+<div class="suite" onclick="openResidence('cliffRoyal')">
+<img src="https://images.unsplash.com/photo-1493558103817-58b2924bce98">
+<div class="suite-info">
+<h3>Cliffside Royal Residence</h3>
+<p>Panoramic Mediterranean views · Rooftop terrace</p>
+<div class="price">From €3,800 per night</div>
+</div>
+</div>
+</div>
+</section>
+
+<section id="awards">
+<div class="section-title">Awards & Recognition</div>
+<div class="awards">
+<div class="award">
+<h3>World Luxury Award 2025</h3>
+<p>Recognized as the leading private island resort in Europe.</p>
+</div>
+<div class="award">
+<h3>Travel + Leisure Best 2026</h3>
+<p>Top destination for exclusive Mediterranean retreats.</p>
+</div>
+<div class="award">
+<h3>Condé Luxe 2025</h3>
+<p>Praised for exceptional service and unforgettable experiences.</p>
+</div>
+</div>
+</section>
+
+<section class="reviews">
+<h2>Guest Reviews</h2>
+<div class="review">
+“The most extraordinary island retreat in Europe.”<br>
+<div class="guest">— Condé Luxe Travel Guide</div>
+</div>
+<div class="review">
+“Palmora is an unrivaled sanctuary of peace and refinement.”<br>
+<div class="guest">— Global Luxury Magazine</div>
+</div>
+</section>
+
+<div class="modal-overlay" id="modalOverlay">
+<div class="modal" id="modalContent">
+<button class="close-btn" onclick="closeModal()">&times;</button>
+<h2 id="modalTitle"></h2>
+<p id="modalText"></p>
+<div id="modalExtra"></div>
+</div>
+</div>
+
+<footer>
+<p>Palmora Private Island Resort</p>
+<p>Mediterranean Sea · Between Spain & Morocco</p>
+<p>reservations@palmora-resort.com</p>
+<p>© 2026 Palmora. All Rights Reserved.</p>
+</footer>
+
+<script>
+function scrollToSection(id){document.getElementById(id).scrollIntoView({behavior:'smooth'});}
+const modals = {
+'dining':{title:'Exquisite Dining Experiences',text:'Indulge in Mediterranean flavors crafted by world-class chefs. Private beach dinners, wine pairing experiences, and signature tasting menus await our guests.'},
+'wellness':{title:'Wellness & Spa Retreat',text:'Experience holistic wellness with our spa, yoga pavilions, and personal trainers. Detox programs, massages, and sea-view meditation rooms provide ultimate relaxation.'},
+'experiences':{title:'Unique Experiences',text:'Explore the Mediterranean with private yacht excursions, diving adventures, cultural tours, and curated art experiences for discerning guests.'},
+'reserve':{title:'Reserve Your Stay',text:'Contact our reservations team or book directly online to secure your private Mediterranean escape. Personalized concierge support available for all stays.'}
+};
+const residences = {
+'oceanVilla':{title:'Ocean Sanctuary Villa',text:'Our Ocean Sanctuary Villa offers private infinity pool, direct beach access, and dedicated host service. Ideal for couples or solo retreats.',availability:true,price:'€2,300 per night'},
+'cliffRoyal':{title:'Cliffside Royal Residence',text:'Cliffside Royal Residence features panoramic sea views, rooftop terrace, and luxurious interiors. Perfect for families or special occasions.',availability:true,price:'€3,800 per night'}
+};
+function openModal(section){
+document.getElementById('modalOverlay').style.display='flex';
+document.getElementById('modalExtra').innerHTML='';
+document.getElementById('modalTitle').innerText=modals[section].title;
+document.getElementById('modalText').innerText=modals[section].text;
+}
+function openResidence(res){
+document.getElementById('modalOverlay').style.display='flex';
+document.getElementById('modalTitle').innerText=residences[res].title;
+document.getElementById('modalText').innerText=residences[res].text;
+document.getElementById('modalExtra').innerHTML=`
+<p><strong>Price:</strong> ${residences[res].price}</p>
+${residences[res].availability ? '<label>Check-in</label><input type="date"><label>Check-out</label><input type="date"><button>Book Now</button>' : '<p>Currently unavailable</p>'}`;
+}
+function closeModal(){document.getElementById('modalOverlay').style.display='none';}
+const observer = new IntersectionObserver(entries=>{
+entries.forEach(entry=>{
+if(entry.isIntersecting){entry.target.style.opacity=1;entry.target.style.transform='translateY(0)';}});
+},{threshold:0.2});
+document.querySelectorAll('section, .hero').forEach(el=>observer.observe(el));
+</script>
+
+</body>
+</html>
